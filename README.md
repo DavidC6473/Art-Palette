@@ -18,3 +18,45 @@ To get started with the application, follow these steps:
    ```shell
    git clone https://github.com/your-username/Art-Palette.git
   ```
+
+2. Navigate to the project directory:
+
+   ```shell
+   cd Art-Palette
+   ```
+
+3. Install the dependencies:
+
+   ```shell
+   npm install
+   ```
+
+4. Replace the Access_Key in the following line of App.js with your Unsplash API access key:
+
+   ```javascript
+   const clientID = "Access_Key";
+   ```
+
+5. Start the application:
+
+   ```shell
+   npm start
+   ```
+
+6. Open your browser and visit http://localhost:3000 to see the application in action.
+
+## Usage
+
+* The application will initially load and display a grid of 30 random images fetched from the Unsplash API.
+* Clicking on an image will open a modal window displaying the full-size image along with its colour palette extracted using ColorThief.
+* To close the modal, click the "X" button or anywhere outside the modal.
+
+## Customisation
+
+You can customize the application according to your needs by modifying the code. Here are a few possibilities:
+
+* Adjust the number of images fetched by changing the `count` variable in `App.js`.
+* Modify the orientation of the fetched images by changing the `orientation` variable in `App.js`.
+* Customize the appearance of the modal by modifying the CSS classes in `App.css`.
+
+  
