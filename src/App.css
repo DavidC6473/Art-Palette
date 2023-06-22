@@ -1,38 +1,60 @@
-.App {
-  text-align: center;
+.container {
+  margin: 50px auto; /* Adjust the margin as needed */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.row {
+  margin-bottom: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.card {
+  padding: 10px; /* Adjust the padding as needed */
+  background-color: #161616;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.card-img-top {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.custom-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 50%;
+  background-color: #161616;
+  outline: none;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start; /* Updated */
+  border-radius: 0.25rem;
+}
+
+.custom-overlay {
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  background: none;
+  border: none;
+  color: rgb(255, 119, 0);
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.modal-image {
+  height: 50%;
+  max-width: 100%;
+  object-fit: contain;
+  margin-top: 20px;
+  border-radius: 0.25rem;
 }
