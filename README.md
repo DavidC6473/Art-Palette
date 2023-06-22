@@ -1,6 +1,6 @@
 # Art-Palette
 
-Art-Palette is a React application that utilizes the Unsplash API to generate a grid of random images. When an image is selected, a modal window pops up using React Modal to display the image. The application also extracts the color palette from the selected image using the ColorThief library and displays it in the modal. This allows users to find inspiration from new images and discover color palettes that match their inspiration.
+Art-Palette is a React application that utilizes the Unsplash API to generate a grid of random images. When an image is selected, a modal window pops up using React Modal to display the image. The application also extracts the colour palette from the selected image using the ColorThief library and displays it in the modal. This allows users to find inspiration from new images and discover colour palettes that match their inspiration. The modal's background colour is the colour opposite to the main palette colour on the colour wheel. Users can click on each colour to copy it to their clipboard.
 
 ## Prerequisites
 
@@ -57,6 +57,6 @@ You can customize the application according to your needs by modifying the code.
 
 * Adjust the number of images fetched by changing the `count` variable in `App.js`.
 * Modify the orientation of the fetched images by changing the `orientation` variable in `App.js`.
-* Customize the appearance of the modal by modifying the CSS classes in `App.css`.
 
-  
+## Acknowlegements
+This application was developed using React, React Modal, ColorThief, and the Unsplash API.
