@@ -17,7 +17,7 @@ To get started with the application, follow these steps:
 
    ```shell
    git clone https://github.com/your-username/Art-Palette.git
-  ```
+   ```
 
 2. Navigate to the project directory:
 
