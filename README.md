@@ -1,6 +1,6 @@
 # Art-Palette
 
-Art-Palette is a React application that utilizes the Unsplash API to generate a grid of random images. When an image is selected, a modal window pops up using React Modal to display the image. The application also extracts the colour palette from the selected image using the ColorThief library and displays it in the modal. This allows users to find inspiration from new images and discover colour palettes that match their inspiration. The modal's background colour is the colour opposite to the main palette colour on the colour wheel. Users can click on each colour to copy it to their clipboard.
+Art-Palette is a React application that utilizes the Unsplash API to generate a grid of random images. When an image is selected, a modal window pops up using React Modal to display the image. The application also extracts the colour palette from the selected image using the ColorThief library and displays it in the modal. This allows users to find inspiration from new images and discover colour palettes that match their inspiration. The modal's background colour is the colour opposite to the main palette colour on the colour wheel. Users can click on each colour to copy it to their clipboard. Search can be used to limit the selection of random images.
 
 ## Screenshots
 
@@ -9,6 +9,9 @@ Art-Palette is a React application that utilizes the Unsplash API to generate a 
 
 #### Modal once an image is selected:
 ![Screenshot 2](./screenshots/Palette2.PNG)
+
+#### Search functionality:
+![Screenshot 3](./screenshots/Palette3.PNG)
 
 ## Prerequisites
 
@@ -60,6 +63,7 @@ To get started with the application, follow these steps:
 * The colour of the modal will be the inverse of the main hex colour.
 * By clicking on an individual palette circle, that hex will be copied to your clipboard.
 * By clicking on "COPY ALL", all the hexes will be copied to your clipboard.
+* The search function can be used to influence the random images recieved.
 * To close the modal, click the "X" button or anywhere outside the modal.
 
 ## Customisation

@@ -4,9 +4,11 @@ import ColorThief from "colorthief";
 import "./App.css";
 
 const clientID = "Access_Key";
-const count = 50;
+const count = 30;
 const orientation = "portrait";
-const endpoint = `https://api.unsplash.com/photos/random/?client_id=${clientID}&count=${count}&orientation=${orientation}`;
+const baseUrl = `https://api.unsplash.com/photos/random/?client_id=${clientID}&count=${count}&orientation=${orientation}`;
+
+Modal.setAppElement("#root");
 
 function calculateOppositeColor(rgbColor) {
   const r = 255 - rgbColor[0];
@@ -21,17 +23,16 @@ function calculateOppositeColor(rgbColor) {
   return [oppositeR, oppositeG, oppositeB];
 }
 
-Modal.setAppElement("#root");
-
 function App() {
   const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const [colorPalette, setColorPalette] = useState([]);
   const [modalBackgroundColor, setModalBackgroundColor] = useState("#161616");
   const [modalCloseButtonColor, setModalCloseButtonColor] = useState("rgb(255, 119, 0)");
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    fetch(endpoint)
+    fetch(baseUrl)
       .then((response) => response.json())
       .then((jsonData) => {
         setImages(jsonData);
@@ -57,11 +58,11 @@ function App() {
     }
   }, [selectedImage]);
 
-  function handleCardClick(image) {
+  const handleCardClick = (image) => {
     setSelectedImage(image);
-  }
+  };
 
-  function handleColorClick(hexCode) {
+  const handleColorClick = (hexCode) => {
     navigator.clipboard.writeText(hexCode)
       .then(() => {
         alert(`Copied "${hexCode}" to clipboard!`);
@@ -69,9 +70,9 @@ function App() {
       .catch((error) => {
         console.error("Failed to copy hex code to clipboard:", error);
       });
-  }
+  };
 
-  function handleCopyPalette() {
+  const handleCopyPalette = () => {
     const paletteHexes = colorPalette.map(color => `#${color[0].toString(16).padStart(2, "0")}${color[1].toString(16).padStart(2, "0")}${color[2].toString(16).padStart(2, "0")}`).join("\n");
     navigator.clipboard.writeText(paletteHexes)
       .then(() => {
@@ -80,68 +81,94 @@ function App() {
       .catch((error) => {
         console.error("Failed to copy palette to clipboard:", error);
       });
-  }
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const searchUrl = `${baseUrl}&query=${searchTerm}`;
+    fetch(searchUrl)
+      .then((response) => response.json())
+      .then((jsonData) => {
+        setImages(jsonData);
+        setSearchTerm("");
+      });
+  };
 
   return (
-    <div className="container">
-      <h1 className="app-heading" style={{ fontFamily: 'DTStraits' }}>
-        ART PALETTE
-      </h1>
-      <div className="row row-cols-5 g-3">
-        {images.map((image) => (
-          <div className="col d-flex align-items-center" key={image.id}>
-            <div className="card" onClick={() => handleCardClick(image)}>
-              <img src={image.urls.small} alt={image.alt_description} className="card-img-top" />
-            </div>
+  <div className="container">
+    <h1 className="app-heading" style={{ fontFamily: 'DTStraits' }}>
+      ART PALETTE
+    </h1>
+
+    <form onSubmit={handleSearch} className="search-form">
+      <input
+        type="text"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        placeholder="Search for photos..."
+        className="search-input"
+      />
+      <button type="submit" className="search-button">
+        Search
+      </button>
+    </form>
+
+    <div className="row row-cols-5 g-3">
+      {images.map((image) => (
+        <div className="col d-flex align-items-center" key={image.id}>
+          <div className="card" onClick={() => handleCardClick(image)}>
+            <img src={image.urls.small} alt={image.alt_description} className="card-img-top" />
           </div>
-        ))}
-      </div>
-
-      <Modal
-        isOpen={selectedImage !== null}
-        onRequestClose={() => setSelectedImage(null)}
-        contentLabel="Image Modal"
-        className="custom-modal"
-        overlayClassName="custom-overlay"
-        style={{
-          content: { backgroundColor: modalBackgroundColor },
-        }}
-      >
-        <button
-          className="close-button"
-          onClick={() => setSelectedImage(null)}
-          style={{ color: modalCloseButtonColor }}
-        >
-          X
-        </button>
-        {selectedImage && (
-          <>
-            <img src={selectedImage.urls.full} alt={selectedImage.alt_description} className="modal-image" />
-
-            <div className="color-palette">
-              {colorPalette.map((color, index) => {
-                const hexCode = `#${color[0].toString(16).padStart(2, "0")}${color[1].toString(16).padStart(2, "0")}${color[2].toString(16).padStart(2, "0")}`;
-                return (
-                  <div
-                    key={index}
-                    className="color-palette-item"
-                    style={{ backgroundColor: `rgb(${color[0]}, ${color[1]}, ${color[2]})` }}
-                    onClick={() => handleColorClick(hexCode)}
-                  >
-                    {hexCode}
-                  </div>
-                );
-              })}
-            </div>
-
-            <button className="copy-palette-button" onClick={handleCopyPalette}>
-              COPY PALETTE
-            </button>
-          </>
-        )}
-      </Modal>
+        </div>
+      ))}
     </div>
-  );
+
+    <Modal
+      isOpen={selectedImage !== null}
+      onRequestClose={() => setSelectedImage(null)}
+      contentLabel="Image Modal"
+      className="custom-modal"
+      overlayClassName="custom-overlay"
+      style={{
+        content: { backgroundColor: modalBackgroundColor },
+      }}
+    >
+      <button
+        className="close-button"
+        onClick={() => setSelectedImage(null)}
+        style={{ color: modalCloseButtonColor }}
+      >
+        X
+      </button>
+      {selectedImage && (
+        <>
+          <img src={selectedImage.urls.full} alt={selectedImage.alt_description} className="modal-image" />
+
+          <div className="color-palette">
+            {colorPalette.map((color, index) => {
+              const hexCode = `#${color[0].toString(16).padStart(2, "0")}${color[1].toString(16).padStart(2, "0")}${color[2].toString(16).padStart(2, "0")}`;
+              return (
+                <div
+                  key={index}
+                  className="color-palette-item"
+                  style={{ backgroundColor: `rgb(${color[0]}, ${color[1]}, ${color[2]})` }}
+                  onClick={() => handleColorClick(hexCode)}
+                >
+                  {hexCode}
+                </div>
+              );
+            })}
+          </div>
+
+          <button className="copy-palette-button" onClick={handleCopyPalette}>
+            COPY PALETTE
+          </button>
+        </>
+      )}
+    </Modal>
+  </div>
+);
+
 }
 
 export default App;
