@@ -4,10 +4,10 @@ Art-Palette is a React application that utilizes the Unsplash API to generate a 
 
 ## Screenshots
 
-### Landing page:
+#### Landing page:
 ![Screenshot 1](./screenshots/Palette1.PNG)
 
-### Modal once an image is selected:
+#### Modal once an image is selected:
 ![Screenshot 2](./screenshots/Palette2.PNG)
 
 ## Prerequisites
