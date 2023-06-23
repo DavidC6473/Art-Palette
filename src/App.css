@@ -1,21 +1,38 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #DBF9F0;
+}
+
 .container {
   margin: 50px auto;
-  background-color: #F0EAD6;
+  background-color: #DBF9F0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .row {
-  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: -10px;
 }
 
 .card {
   padding: 10px;
-  background-color: #161616;
+  background-color: #F7F9F7 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-color: #750D37;
 }
 
 .card-img-top {
   object-fit: cover;
-  height: 100%;
-  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 /* App.css */
@@ -26,13 +43,14 @@
   transform: translate(-50%, -50%);
   width: 50%;
   height: 85%;
-  outline: none;
+  outline: .5px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
   border-radius: 0.25rem;
-  background-color: var(--modal-background-color); /* Removed line */
+  background-color: var(--modal-background-color); 
+  border-color: var(--modal-close-button-color);
 }
 
 .custom-overlay {
@@ -50,7 +68,7 @@
   font-size: 20px;
   background: none;
   border: none;
-  color: var(--modal-close-button-color); /* Removed line */
+  color: var(--modal-close-button-color); 
   cursor: pointer;
 }
 
