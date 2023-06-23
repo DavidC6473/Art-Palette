@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import ColorThief from "colorthief";
 import "./App.css";
 
-const clientID = "Access_Key";
+const clientID = "3GjtprLkQsOmAxw490rJZ8KcL0MAP7tGEMd8fa2gAnk";
 const count = 50;
 const orientation = "portrait";
 const endpoint = `https://api.unsplash.com/photos/random/?client_id=${clientID}&count=${count}&orientation=${orientation}`;
@@ -21,7 +21,7 @@ function calculateOppositeColor(rgbColor) {
   return [oppositeR, oppositeG, oppositeB];
 }
 
-Modal.setAppElement("#root"); // Add this line to set the app element
+Modal.setAppElement("#root");
 
 function App() {
   const [images, setImages] = useState([]);
@@ -44,7 +44,7 @@ function App() {
       const img = new Image();
       img.crossOrigin = "Anonymous";
       img.src = selectedImage.urls.regular;
-  
+
       img.onload = () => {
         const palette = colorThief.getPalette(img, 5);
         setColorPalette(palette);
@@ -56,7 +56,6 @@ function App() {
       };
     }
   }, [selectedImage]);
-  
 
   function handleCardClick(image) {
     setSelectedImage(image);
@@ -72,8 +71,22 @@ function App() {
       });
   }
 
+  function handleCopyPalette() {
+    const paletteHexes = colorPalette.map(color => `#${color[0].toString(16).padStart(2, "0")}${color[1].toString(16).padStart(2, "0")}${color[2].toString(16).padStart(2, "0")}`).join("\n");
+    navigator.clipboard.writeText(paletteHexes)
+      .then(() => {
+        alert("Copied palette to clipboard!");
+      })
+      .catch((error) => {
+        console.error("Failed to copy palette to clipboard:", error);
+      });
+  }
+
   return (
     <div className="container">
+      <h1 className="app-heading" style={{ fontFamily: 'DTStraits' }}>
+        ART PALETTE
+      </h1>
       <div className="row row-cols-5 g-3">
         {images.map((image) => (
           <div className="col d-flex align-items-center" key={image.id}>
@@ -88,8 +101,8 @@ function App() {
         isOpen={selectedImage !== null}
         onRequestClose={() => setSelectedImage(null)}
         contentLabel="Image Modal"
-        className="custom-modal" // Added class name for styling
-        overlayClassName="custom-overlay" // Added overlay class name for styling
+        className="custom-modal"
+        overlayClassName="custom-overlay"
         style={{
           content: { backgroundColor: modalBackgroundColor },
         }}
@@ -120,6 +133,10 @@ function App() {
                 );
               })}
             </div>
+
+            <button className="copy-palette-button" onClick={handleCopyPalette}>
+              COPY PALETTE
+            </button>
           </>
         )}
       </Modal>
