@@ -57,6 +57,9 @@ To get started with the application, follow these steps:
 
 * The application will initially load and display a grid of 30 random images fetched from the Unsplash API.
 * Clicking on an image will open a modal window displaying the full-size image along with its colour palette extracted using ColorThief.
+* The colour of the modal will be the inverse of the main hex colour.
+* By clicking on an individual palette circle, that hex will be copied to your clipboard.
+* By clicking on "COPY ALL", all the hexes will be copied to your clipboard.
 * To close the modal, click the "X" button or anywhere outside the modal.
 
 ## Customisation
