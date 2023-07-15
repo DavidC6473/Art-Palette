@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import ColorThief from "colorthief";
 import "./App.css";
 
-const clientID = "Access_Key";
+const clientID = "3GjtprLkQsOmAxw490rJZ8KcL0MAP7tGEMd8fa2gAnk";
 const count = 30;
 const orientation = "portrait";
 const baseUrl = `https://api.unsplash.com/photos/random/?client_id=${clientID}&count=${count}&orientation=${orientation}`;
