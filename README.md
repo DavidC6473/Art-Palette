@@ -44,7 +44,7 @@ To get started with the application, follow these steps:
    npm install
    ```
 
-4. Replace the Access_Key in the following line of App.js with your Unsplash API access key:
+4. Sign up and create an app on Unsplash then replace the Access_Key in the following line of App.js with your Unsplash API access key:
 
    ```javascript
    const clientID = "Access_Key";
