@@ -75,5 +75,9 @@ You can customize the application according to your needs by modifying the code.
 * Adjust the number of images fetched by changing the `count` variable in `App.js`.
 * Modify the orientation of the fetched images by changing the `orientation` variable in `App.js`.
 
+## Mobile 
+
+currently working on making the site mobile responsive. 
+
 ## Acknowlegements
 This application was developed using React, React Modal, ColorThief, and the Unsplash API.
